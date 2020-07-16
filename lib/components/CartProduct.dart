@@ -24,7 +24,6 @@ class _CartProductState extends State<CartProduct> {
       "size": "M",
       "Color": "Red",
       "Quantity": 1,
-
     },
     {
       "name": "Cookies3",
@@ -33,21 +32,23 @@ class _CartProductState extends State<CartProduct> {
       "size": "M",
       "Color": "Red",
       "Quantity": 1,
-    },];
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      itemCount: 3,
-      itemBuilder: (context,index){
-        return SingleCartProduct(cartProductQty: productsOnTheCart[index]["Quantity"],
-        cartProductColor: productsOnTheCart[index]["Color"],
-        cartProductName: productsOnTheCart[index]["name"],
-        cartProductPicture: productsOnTheCart[index]["picture"],
-        cartProductPrice: productsOnTheCart[index]["price"],
-        cartProductSize: productsOnTheCart[index]["size"],)
-;      }
-      );
+        itemCount: 3,
+        itemBuilder: (context, index) {
+          return SingleCartProduct(
+            cartProductQty: productsOnTheCart[index]["Quantity"],
+            cartProductColor: productsOnTheCart[index]["Color"],
+            cartProductName: productsOnTheCart[index]["name"],
+            cartProductPicture: productsOnTheCart[index]["picture"],
+            cartProductPrice: productsOnTheCart[index]["price"],
+            cartProductSize: productsOnTheCart[index]["size"],
+          );
+        });
   }
 }
 
@@ -72,58 +73,85 @@ class SingleCartProduct extends StatelessWidget {
     return Card(
       child: ListTile(
         //==========Leading Section=============
-        leading: Image.asset(cartProductPicture,width: 100,height: 100,),
+        leading: Image.asset(
+          cartProductPicture,
+          width: 100,
+          height: 100,
+        ),
 
         //==========Title Section===============
         title: Text(cartProductName),
 
         //================Subtitle Section==========
-        subtitle: Column(children: <Widget>[
-         // Row Inside Column
+        subtitle: Column(
+          children: <Widget>[
+            // Row Inside Column
 
-        Row(children: <Widget>[
-        // ===================Size of the Product=====================
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Expanded(
-              child: Text("Size:"),
+            Row(
+              children: <Widget>[
+                // ===================Size of the Product=====================
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Expanded(
+                    child: Text("Size:"),
+                  ),
+                ),
+
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Expanded(
+                    child: Text(cartProductSize,
+                        style: TextStyle(color: Colors.red)),
+                  ),
+                ),
+                // ======================Quantity Of the Product====================
+                Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Text("Quantity:"),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(4.0),
+                  child: Expanded(
+                    child: Text(cartProductQty.toString(),
+                        style: TextStyle(color: Colors.red)),
+                  ),
+                ),
+                // =======================Price Of the Product======================
+              ],
+            ),
+            Container(
+              alignment: Alignment.topLeft,
+              child: Row(
+                children: <Widget>[
+                  Text("Rs ",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                          fontSize: 16.0)),
+                  Text(cartProductPrice.toString(),
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.red,
+                          fontSize: 16.0))
+                ],
               ),
-          ),
-            
-          Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Expanded(
-              child: Text(cartProductSize,style: TextStyle(color: Colors.red)),
-              ),
-          ),  
-        // ======================Quantity Of the Product====================
-          Padding(
-            padding: EdgeInsets.fromLTRB(20.0, 8.0, 8.0, 8.0),
-            child: Text("Quantity:"),) ,
-             Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Expanded(
-              child: Text(cartProductQty.toString(),style: TextStyle(color: Colors.red)),
-              ),
-          ),  
-        // =======================Price Of the Product======================
-        ],),
-        Container(
-          alignment: Alignment.topLeft,
-          child: Row(children: <Widget>[Text("Rs ",style:TextStyle(fontWeight: FontWeight.bold,color: Colors.red,fontSize: 16.0)),
-           Text(cartProductPrice.toString(),style:TextStyle(fontWeight: FontWeight.bold,color: Colors.red,fontSize: 16.0))
+            ),
           ],
-          ),
-          )
-
-        ],
         ),
-        trailing: Column(children: <Widget>[
-          IconButton(icon: Icon(Icons.arrow_drop_up),onPressed: (){},),
-          Text(cartProductQty.toString()),
-          IconButton(icon: Icon(Icons.arrow_drop_down),onPressed: (){},)
-        ],),
+        trailing: Column(
+          children: <Widget>[
+            IconButton(
+              icon: Icon(Icons.arrow_drop_up),
+              onPressed: () {},
+            ),
+            Text(cartProductQty.toString()),
+            IconButton(
+              icon: Icon(Icons.arrow_drop_down),
+              onPressed: () {},
+            )
+          ],
         ),
+      ),
     );
   }
 }

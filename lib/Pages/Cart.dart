@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-//My Import 
+//My Import
 import '../components/CartProduct.dart';
 
 class Cart extends StatefulWidget {
@@ -12,42 +12,47 @@ class _CartState extends State<Cart> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: Colors.deepOrange),
         elevation: 0.4,
-        backgroundColor: Colors.green[600],
-        title: Text('Cart'),
+        backgroundColor: Colors.white,
+        title: Text(
+          'Cart',
+          style: TextStyle(color: Colors.deepOrange),
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.search),
             color: Colors.white,
-            onPressed:(){},
+            onPressed: () {},
           ),
-           IconButton(
+          IconButton(
             icon: Icon(Icons.shopping_cart),
             color: Colors.white,
-            onPressed:(){},
+            onPressed: () {},
           )
         ],
       ),
       body: CartProduct(),
-      
       bottomNavigationBar: Container(
         color: Colors.white,
-        child: Row(children: <Widget>[
-          Expanded(child: ListTile(
-            title: Text("Total:"),
-            subtitle: Text("Rs230"),
-            ),),
-
-          Expanded(
-            child: MaterialButton(onPressed: (){},
-            child: Text("Check Out",style: TextStyle(color: Colors.white)),
-            color: Colors.red)
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              child: ListTile(
+                title: Text("Total:"),
+                subtitle: Text("Rs230"),
+              ),
             ),
-
-        ],
+            Expanded(
+                child: MaterialButton(
+                    onPressed: () {},
+                    child: Text("Check Out",
+                        style: TextStyle(color: Colors.white)),
+                    color: Colors.red)),
+          ],
         ),
-        ),
+      ),
     );
   }
 }
